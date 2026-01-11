@@ -22,12 +22,11 @@
 			{
 				name,
 				email,
-				password,
-				callbackURL: '/'
+				password
 			},
 			{
 				onSuccess() {
-					goto('/');
+					goto('/profiles');
 				},
 				onResponse() {
 					loading = false;
@@ -41,13 +40,12 @@
 		await authClient.signIn.email(
 			{
 				email,
-				password,
-				callbackURL: '/'
+				password
 			},
 			{
 				onSuccess() {
 					loading = false;
-					goto('/');
+					goto('/profiles');
 				},
 				onResponse() {
 					loading = false;
