@@ -1,0 +1,9 @@
+<script lang="ts">
+	type NavbarProps = {
+		label: string;
+	};
+
+	let { label }: NavbarProps = $props();
+</script>
+
+<div class="cursor-pointer text-white transition hover:text-gray-300">{label}</div>
