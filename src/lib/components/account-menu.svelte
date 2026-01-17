@@ -1,12 +1,14 @@
 <script lang="ts">
 	import DefaultBlue from '$lib/assets/default-blue.png';
 	import { authClient } from '$lib/auth-client';
+	import type { User } from 'better-auth';
 
 	type AccountMenuProps = {
 		visible?: boolean;
+		user: User;
 	};
 
-	let { visible }: AccountMenuProps = $props();
+	let { visible, user }: AccountMenuProps = $props();
 
 	function logout() {
 		authClient.signOut(
@@ -25,7 +27,7 @@
 		<div class="flex flex-col gap-3">
 			<div class="group/item flex w-full items-center gap-3 px-3">
 				<img class="w-8 rounded-md" src={DefaultBlue} alt="account" />
-				<p class="text-sm text-white group-hover/item:underline">Username</p>
+				<p class="text-sm text-white group-hover/item:underline">{user.name}</p>
 			</div>
 			<hr class="my-4 h-px border-0 bg-gray-600" />
 			<button class="px-3 text-center text-sm text-white hover:underline" onclick={logout}>

@@ -8,11 +8,18 @@
 	import BellIcon from 'lucide-svelte/icons/bell';
 	import AccountMenu from './account-menu.svelte';
 	import { cn } from '$lib/utils';
+	import type { User } from 'better-auth';
+
+	type NavbarProps = {
+		user: User;
+	};
 
 	const TOP_OFFSET = 66;
 	let showMobileMenu = $state(false);
 	let showAccountMenu = $state(false);
 	let showBackground = $state(false);
+
+	let { user }: NavbarProps = $props();
 </script>
 
 <svelte:window on:scroll={() => (showBackground = window.scrollY >= TOP_OFFSET)} />
@@ -47,7 +54,7 @@
 					<img src={DefaultBlue} alt="account" />
 				</div>
 				<ChevronDownIcon class={cn('text-white transition', showAccountMenu && 'rotate-180')} />
-				<AccountMenu visible={showAccountMenu} />
+				<AccountMenu visible={showAccountMenu} {user} />
 			</button>
 		</div>
 	</div>
