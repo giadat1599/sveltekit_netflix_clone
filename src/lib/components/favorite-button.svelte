@@ -41,8 +41,8 @@
 				optimisiticIsFavorite = isFavorite;
 			}
 
-			invalidateFavoriteMovies.set(new Date().toISOString());
-			invalidateTrendingMovies.set(new Date().toISOString());
+			invalidateFavoriteMovies();
+			invalidateTrendingMovies();
 		} catch (error) {
 			alert('Something went wrong. Please try again later.');
 			optimisiticIsFavorite = isFavorite;

@@ -4,7 +4,7 @@
 	import Navbar from '$lib/components/navbar.svelte';
 	import { onMount } from 'svelte';
 	import type { PageProps } from './$types';
-	import { invalidateFavoriteMovies, invalidateTrendingMovies } from '../stores/invalidates';
+	import { favoriteMoviesInvalidation, trendingMoviesInvalidation } from '../stores/invalidates';
 
 	let { data }: PageProps = $props();
 
@@ -31,7 +31,7 @@
 	});
 
 	$effect(() => {
-		if ($invalidateFavoriteMovies || $invalidateTrendingMovies) {
+		if ($favoriteMoviesInvalidation || $trendingMoviesInvalidation) {
 			fetchFavoriteMovies();
 			fetchTrendingMovies();
 		}

@@ -1,8 +1,11 @@
 <script lang="ts">
 	import PlayIcon from 'lucide-svelte/icons/play';
 	import FavoriteButton from './favorite-button.svelte';
+	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
+	import type { Movie } from '$lib/types';
 	type MovieCardProps = {
-		movie: Record<string, any>;
+		movie: Movie;
 	};
 
 	let { movie }: MovieCardProps = $props();
@@ -26,6 +29,7 @@
 			<div class="flex items-center gap-3">
 				<button
 					class="flex size-6 cursor-pointer items-center justify-center rounded-full bg-white transition hover:bg-neutral-300 lg:size-10"
+					onclick={() => goto(resolve('/watch/[movieId]', { movieId: movie.id }))}
 				>
 					<PlayIcon class="fill-black" />
 				</button>
