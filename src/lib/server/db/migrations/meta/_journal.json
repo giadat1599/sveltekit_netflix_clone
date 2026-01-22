@@ -8,6 +8,20 @@
       "when": 1767975970142,
       "tag": "0000_high_penance",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1769072454078,
+      "tag": "0001_nifty_enchantress",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1769097805157,
+      "tag": "0002_flashy_bloodscream",
+      "breakpoints": true
     }
   ]
 }

@@ -4,10 +4,12 @@
 	import Navbar from '$lib/components/navbar.svelte';
 	import { onMount } from 'svelte';
 	import type { PageProps } from './$types';
+	import { invalidateFavoriteMovies, invalidateTrendingMovies } from '../stores/invalidates';
 
 	let { data }: PageProps = $props();
 
 	let trendingMovies = $state([]);
+	let favoriteMovies = $state([]);
 
 	async function fetchTrendingMovies() {
 		const res = await fetch('/api/movies');
@@ -16,8 +18,23 @@
 		}
 	}
 
+	async function fetchFavoriteMovies() {
+		const res = await fetch('/api/movies/favorites');
+		if (res.ok) {
+			favoriteMovies = await res.json();
+		}
+	}
+
 	onMount(() => {
 		fetchTrendingMovies();
+		fetchFavoriteMovies();
+	});
+
+	$effect(() => {
+		if ($invalidateFavoriteMovies || $invalidateTrendingMovies) {
+			fetchFavoriteMovies();
+			fetchTrendingMovies();
+		}
 	});
 </script>
 
@@ -25,4 +42,5 @@
 <Billboard />
 <div class="pb-40">
 	<MovieList title="Trending Now" data={trendingMovies} />
+	<MovieList title="My List" data={favoriteMovies} />
 </div>

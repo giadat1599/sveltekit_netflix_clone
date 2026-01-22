@@ -1,5 +1,6 @@
 <script lang="ts">
 	import PlayIcon from 'lucide-svelte/icons/play';
+	import FavoriteButton from './favorite-button.svelte';
 	type MovieCardProps = {
 		movie: Record<string, any>;
 	};
@@ -28,6 +29,7 @@
 				>
 					<PlayIcon class="fill-black" />
 				</button>
+				<FavoriteButton movieId={movie.id} isFavorite={movie.isFavorite} />
 			</div>
 			<p class="mt-4 font-semibold text-green-400">New <span class="text-white"> 2023 </span></p>
 			<div class="mt-4 flex items-center gap-2">
