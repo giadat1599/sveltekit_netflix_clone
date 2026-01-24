@@ -5,6 +5,8 @@
 	import { onMount } from 'svelte';
 	import type { PageProps } from './$types';
 	import { favoriteMoviesInvalidation, trendingMoviesInvalidation } from '../stores/invalidates';
+	import InfoModal from '$lib/components/info-modal.svelte';
+	import { infoModal } from '../stores/info-modal';
 
 	let { data }: PageProps = $props();
 
@@ -44,3 +46,4 @@
 	<MovieList title="Trending Now" data={trendingMovies} />
 	<MovieList title="My List" data={favoriteMovies} />
 </div>
+<InfoModal visible={$infoModal.isOpen} onClose={infoModal.closeModal} />

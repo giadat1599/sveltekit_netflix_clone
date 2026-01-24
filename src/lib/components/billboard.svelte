@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import InfoIcon from 'lucide-svelte/icons/info';
 	import PlayButton from './play-button.svelte';
+	import { infoModal } from '../../stores/info-modal';
 
 	let movie: Movie | null = $state(null);
 
@@ -11,6 +12,11 @@
 		if (res.ok) {
 			movie = await res.json();
 		}
+	}
+
+	function handleOpenModal() {
+		if (!movie) return;
+		infoModal.openModal(movie?.id);
 	}
 
 	onMount(() => {
@@ -37,6 +43,7 @@
 				<PlayButton movieId={movie.id} />
 				<button
 					class="flex w-auto cursor-pointer items-center rounded-md bg-white/30 px-2 py-1 text-xs font-semibold text-white transition hover:bg-white/20 md:px-4 md:py-2 lg:text-lg"
+					onclick={handleOpenModal}
 				>
 					<InfoIcon class="mr-1" />
 					More Info

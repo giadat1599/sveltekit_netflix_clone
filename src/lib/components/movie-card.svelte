@@ -1,9 +1,11 @@
 <script lang="ts">
+	import ChevronDownIcon from 'lucide-svelte/icons/chevron-down';
 	import PlayIcon from 'lucide-svelte/icons/play';
 	import FavoriteButton from './favorite-button.svelte';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import type { Movie } from '$lib/types';
+	import { infoModal } from '../../stores/info-modal';
 	type MovieCardProps = {
 		movie: Movie;
 	};
@@ -34,6 +36,12 @@
 					<PlayIcon class="fill-black" />
 				</button>
 				<FavoriteButton movieId={movie.id} isFavorite={movie.isFavorite} />
+				<button
+					class="group/item ml-auto flex size-6 cursor-pointer items-center justify-center rounded-full border-2 border-white transition hover:border-neutral-300 lg:size-10"
+					onclick={() => infoModal.openModal(movie.id)}
+				>
+					<ChevronDownIcon class="text-white" />
+				</button>
 			</div>
 			<p class="mt-4 font-semibold text-green-400">New <span class="text-white"> 2023 </span></p>
 			<div class="mt-4 flex items-center gap-2">
