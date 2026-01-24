@@ -2,7 +2,6 @@
 	import Billboard from '$lib/components/billboard.svelte';
 	import MovieList from '$lib/components/movie-list.svelte';
 	import Navbar from '$lib/components/navbar.svelte';
-	import { onMount } from 'svelte';
 	import type { PageProps } from './$types';
 	import { favoriteMoviesInvalidation, trendingMoviesInvalidation } from '../stores/invalidates';
 	import InfoModal from '$lib/components/info-modal.svelte';
@@ -26,11 +25,6 @@
 			favoriteMovies = await res.json();
 		}
 	}
-
-	onMount(() => {
-		fetchTrendingMovies();
-		fetchFavoriteMovies();
-	});
 
 	$effect(() => {
 		if ($favoriteMoviesInvalidation || $trendingMoviesInvalidation) {
